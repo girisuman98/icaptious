@@ -20,6 +20,28 @@ iCaptious provides plugins for third-party integration with itself.
 
 ## Installation
 
+### Using Composer
+
+The recommended way to install the iCaptious is through [Composer](http://getcomposer.org). Run the following command to install it:
+```sh
+composer require icaptious/icaptious "dev-master"
+```
+OR
+```sh
+php composer.phar require icaptious/icaptious "dev-master"
+```
+This is how you can implement the framework
+```php
+//Composer
+Require('/path/to/vendor/autoload.php');
+
+use iCaptious\Core\Route;
+
+Route::Get("/", function(){
+   echo "Hello World!";
+});
+
+```
 ### Direct download (no Composer)
 
 If you wish to install the framework manually (i.e. without Composer), then you
@@ -30,9 +52,6 @@ can require into your script instead of Composer's `vendor/autoload.php`. For
 example:
 
 ```php
-//Composer
-Require('/path/to/icaptious/vendor/autoload.php');
-//
 //Self-Made Autoload Script
 Require('/path/to/icaptious/autoload.php');
 
