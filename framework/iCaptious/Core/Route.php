@@ -170,12 +170,14 @@ class Route extends Path
 
 	/**
 	 * Route and Compose a view
-	 * @param [type] $view     [description]
-	 * @param [type] $ViewName [description]
-	 * @param array  $assign   [description]
+	 * @param string $view
+	 * @param string $ViewName
+	 * @param array  $assign
 	 */
 	public static function Compose($view, $ViewName, $assign = array()){
+		if ($view && $ViewName && $assign) {
 
+		}
 	}
 
 	/**
@@ -187,7 +189,8 @@ class Route extends Path
 	 * @param string $regex
 	 */
 	public static function Mark($param, $regex){
-
+		if ($param && $regex) {
+		}
 	}
 
 	public static function __callStatic($method, $args){
