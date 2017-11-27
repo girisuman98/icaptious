@@ -86,12 +86,6 @@ use iCaptious\Core\Route;
 // run this function if the domain was requested
 Route::Domain("icaptious.com", function(){ 
 
-	/*
-	 * Secure the connection for this domain
-	 * by default if is not secured already.
-	 */
-	Route::Secure();
-
 	echo "<h1>Welcome to icaptious.com :)</h1>";
 
 	// Route for GET Request Method
