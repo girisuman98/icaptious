@@ -1,8 +1,4 @@
 <?php
-if (!defined("ROOT_DIR")) {
-	die(); // Silence is golden
-}
-
 // Specify the extensions that may be loaded
 spl_autoload_extensions('.php');
 
@@ -13,16 +9,14 @@ spl_autoload_extensions('.php');
  *
  * @access public
  */
-spl_autoload_register(function ($class) {	
-	if (substr($class, 0, 10) !== 'iCaptious\\') {
-      		return;
-    	}
+spl_autoload_register(function ($class) {
 
-    	// Replace the backslashes with fontslashes
-    	$class = str_replace('\\', '/', $class);
+	if (substr($class, 0, 10) !== 'iCaptious\\') {
+  		return;
+	}
 
 	// split the namespace to an array
-	$namespaces = explode("/", $class);
+	$namespaces = explode("\\", $class);
 
 	// Replace namespace separator with directory separator
 	$path = implode(DIRECTORY_SEPARATOR, $namespaces);
