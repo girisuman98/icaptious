@@ -8,7 +8,7 @@
 
 ## About iCaptious
 
-* Project page: http://developers.icaptious.com/icaptious/
+* Project page: https://developers.icaptious.com/icaptious/
 * Repository: https://github.com/icaptious/icaptious
 * Version: 1.0.0
 * License: MIT, see [LICENSE](LICENSE)
