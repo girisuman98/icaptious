@@ -5,6 +5,7 @@ if (!defined("ROOT_DIR")) {
 
 // Specify the extensions that may be loaded
 spl_autoload_extensions('.php');
+
 /**
  * The Autoloader function
  *
@@ -14,14 +15,11 @@ spl_autoload_extensions('.php');
  */
 spl_autoload_register(function ($class) {	
 	if (substr($class, 0, 10) !== 'iCaptious\\') {
-      /* If the class does not lie under the "ReCaptcha" namespace,
-       * then we can exit immediately.
-       */
-      return;
-    }
+      		return;
+    	}
 
-    // Replace the backslashes with fontslashes
-    $class = str_replace('\\', '/', $class);
+    	// Replace the backslashes with fontslashes
+    	$class = str_replace('\\', '/', $class);
 
 	// split the namespace to an array
 	$namespaces = explode("/", $class);
