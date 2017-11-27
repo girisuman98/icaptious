@@ -1,6 +1,7 @@
 <?php
 namespace iCaptious\Cache;
 
+use iCaptious\Cache\FileCacheAbstract;
 /*
 *
 */
@@ -9,10 +10,10 @@ class FileCacheAPC extends FileCacheAbstract {
     /**
     * Fetch a stored variable from the cache
     * 
-    * @param  steing $key  
+    * @param  string $key  
     * @param  mixed  $data
     * @param  int    $ttl
-    * @return void
+    * @return mixed
     */
     public static function fetch($key) {
         return apc_fetch($key);

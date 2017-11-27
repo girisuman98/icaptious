@@ -175,7 +175,7 @@ class Route extends Path
 	 * @param array  $assign
 	 */
 	public static function Compose($view, $ViewName, $assign = array()){
-		if ($view && $ViewName && $assign) {
+		if ($view && $ViewName && !empty($assign)) {
 
 		}
 	}

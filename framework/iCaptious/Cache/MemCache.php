@@ -1,11 +1,13 @@
 <?php
+
+use iCaptious\Cache\FileCacheAbstract;
 /*
 *
 */
 class MemCache extends FileCacheAbstract {
 
     // Memcache object
-    private static $connection = new MemCache;
+    private static $Conn = new \MemCache();
 
     /**
     * Store data at the server
@@ -13,10 +15,10 @@ class MemCache extends FileCacheAbstract {
     * @param  string $key  
     * @param  mixed  $data
     * @param  int    $ttl
-    * @return void
+    * @return mixed
     */
     public static function store(string $key, $data, int $ttl) {
-        return self::$connection->set($key,$data,0,$ttl);
+        return self::$Conn->set($key,$data,0,$ttl);
     }
 
     /**
@@ -26,7 +28,7 @@ class MemCache extends FileCacheAbstract {
     * @return mixed
     */
     public static function fetch(string $key) {
-        return self::$connection->get($key);
+        return self::$Conn->get($key);
     }
 
     /**
@@ -36,7 +38,7 @@ class MemCache extends FileCacheAbstract {
     * @return bool
     */
     public static function delete(string $key) {
-        return self::$connection->delete($key);
+        return self::$Conn->delete($key);
     }
 
     /**
@@ -47,6 +49,6 @@ class MemCache extends FileCacheAbstract {
      * @param integer   $weight
      */
     public static function addServer(string $host, int $port = 11211, int $weight = 10) {
-        self::$connection->addServer($host,$port,true,$weight);
+        self::$Conn->addServer($host,$port,true,$weight);
     }
 }

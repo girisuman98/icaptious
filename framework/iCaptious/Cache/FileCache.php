@@ -1,6 +1,7 @@
 <?php
 namespace iCaptious\Cache;
 
+use iCaptious\Cache\FileCacheAbstract;
 /*
 *
 */
