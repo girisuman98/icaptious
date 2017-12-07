@@ -12,8 +12,8 @@ class Request
 		 * Need to change this i the future.
 		 * It is temporary
 		 */
-		if (!isset($_SERVER) || empty($SERVER)) {
-			throw new Exception("Error Processing Request", 1);
+		if (!isset($_SERVER) || empty($_SERVER)) {
+			throw new \Exception("Error Processing Request", 1);
 		}
 	}
 
@@ -35,9 +35,11 @@ class Request
 			$aQuery = array();
 			foreach ($query as $key => $value) {
 				$values = explode("=", $value);
-				$aQuery[] = array(
-					$values[0] => (!empty($values[1]) ? $values[1] : "");
-				);
+				if (!empty($aQuery[$values[0]])) {
+					$aQuery[$values[0]][] = (!empty($values[1]) ? $values[1] : "");
+				} else {
+					$aQuery[$values[0]] = array((!empty($values[1]) ? $values[1] : ""));
+				}
 			}
 			return $aQuery;
 		}

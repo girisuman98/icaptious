@@ -66,6 +66,7 @@ class Route
 	 * @return mixed
 	 */
 	public static function Load($route, $callback){
+		self::$Request = self::$Request ?? (new Request());
 		if (!empty(self::$Group)) {
 			$route = ($route[0] == "/" ?
 			 self::$Group.$route :
