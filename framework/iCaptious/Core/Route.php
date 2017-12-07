@@ -19,7 +19,7 @@ class Route
 	 * Inherits everything from the Request class
 	 * @var Request
 	 */
-	private static $Request = new Request();
+	private static $Request = (new Request());
 
 	/**
 	 * This variable has the prefix value, wich will be
