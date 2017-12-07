@@ -1,32 +1,35 @@
 <?php
+
 namespace iCaptious\Http;
 
 use iCaptious\Http\Request\Headers;
 
 class Response
 {
-	
-	protected $Version;
+    protected $Version;
 
-	protected $StatusCode;
+    protected $StatusCode;
 
-	protected $StatusText;
+    protected $StatusText;
 
-	/**
-     * iCaptious\Http\Request\Headers
+    /**
+     * iCaptious\Http\Request\Headers.
+     *
      * @var Headers
      */
     protected static $Headers;
 
-	/**
+    /**
      * Status codes text table.
      *
-     * The list of codes is complete according to the 
+     * The list of codes is complete according to the
+     *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status HTTP response status codes
+     *
      * @var array
      */
-    protected static $StatusTexts = array(
-    	// Information responses
+    protected static $StatusTexts = [
+        // Information responses
         100 => 'Continue',
         101 => 'Switching Protocols',
         102 => 'Processing',            // WebDAV
@@ -96,13 +99,14 @@ class Response
         508 => 'Loop Detected',
         510 => 'Not Extended',
         511 => 'Network Authentication Required',
-    );
+    ];
 
-	public function __construct(){
-		self::$Headers 	= self::$Headers ?? (new Headers());
-	}
+    public function __construct()
+    {
+        self::$Headers = self::$Headers ?? (new Headers());
+    }
 
-	/**
+    /**
      * Sends HTTP headers.
      *
      * @return $this
@@ -114,11 +118,12 @@ class Response
             return $this;
         }
 
-        header("HTTP/".$this->Version." ".$this->StatusCode." ".$this->StatusText, true, $this->StatusCode);
+        header('HTTP/'.$this->Version.' '.$this->StatusCode.' '.$this->StatusText, true, $this->StatusCode);
 
         foreach ($this->Headers->GetCookies() as $cookie) {
             setcookie($cookie->Name(), $cookie->Value(), $cookie->ExpiresTime(), $cookie->Path(), $cookie->Domain(), $cookie->Secure(), $cookie->HttpOnly());
         }
+
         return $this;
     }
 }

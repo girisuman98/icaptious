@@ -1,14 +1,14 @@
 <?php
+
 namespace iCaptious\Http;
 
 use iCaptious\Http\Request\Headers;
- 
+
 class Request
 {
-
-	/**
-	 * Rewuest Methods
-	 */
+    /**
+     * Rewuest Methods.
+     */
     const METHOD_HEAD = 'HEAD';
     const METHOD_GET = 'GET';
     const METHOD_POST = 'POST';
@@ -21,99 +21,120 @@ class Request
     const METHOD_CONNECT = 'CONNECT';
 
     /**
-     * iCaptious\Http\Request\Headers
+     * iCaptious\Http\Request\Headers.
+     *
      * @var Headers
      */
     protected static $Headers;
 
     /**
-     * iCaptious\Http\Request\Query
+     * iCaptious\Http\Request\Query.
+     *
      * @var Query
      */
     protected static $Query;
-	
-	function __construct(){
-		/**
-		 * Need to change this i the future.
-		 * It is temporary
-		 */
-		if (!isset($_SERVER) || empty($_SERVER)) {
-			throw new \Exception("Error Processing Request", 1);
-		}
 
-		self::$Headers 	= self::$Headers ?? (new Headers());
-		self::$Query 	= self::$Query ?? (new Query());
-	}
+    public function __construct()
+    {
+        /*
+         * Need to change this i the future.
+         * It is temporary
+         */
+        if (!isset($_SERVER) || empty($_SERVER)) {
+            throw new \Exception('Error Processing Request', 1);
+        }
 
-	/**
-	 * Return iCaptious\Http\Request\Headers
-	 * @return mixed
-	 */
-	public function headers(){
-		return self::$Headers;
-	}
+        self::$Headers = self::$Headers ?? (new Headers());
+        self::$Query = self::$Query ?? (new Query());
+    }
 
-	/**
-	 * Return the redirect url
-	 * @return string
-	 */
-	public function url(){
-		return urldecode($_SERVER['REDIRECT_URL']);
-	}
+    /**
+     * Return iCaptious\Http\Request\Headers.
+     *
+     * @return mixed
+     */
+    public function headers()
+    {
+        return self::$Headers;
+    }
 
-	/**
-	 * Return query string as an array
-	 * @return array
-	 */
-	public function query(){
-		return self::$Query;
-	}
+    /**
+     * Return the redirect url.
+     *
+     * @return string
+     */
+    public function url()
+    {
+        return urldecode($_SERVER['REDIRECT_URL']);
+    }
 
-	/**
-	 * Return the request method
-	 * @return string [GET|POST|PUT|DELETE|PATCH]
-	 */
-	public function method(){
-		return $_SERVER['REQUEST_METHOD'];
-	}
+    /**
+     * Return query string as an array.
+     *
+     * @return array
+     */
+    public function query()
+    {
+        return self::$Query;
+    }
 
-	/**
-	 * Returns the base url
-	 * @return string
-	 */
-	public function basename(){
-		return rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');;
-	}
+    /**
+     * Return the request method.
+     *
+     * @return string [GET|POST|PUT|DELETE|PATCH]
+     */
+    public function method()
+    {
+        return $_SERVER['REQUEST_METHOD'];
+    }
 
-	/**
-	 * Return the request scheme
-	 * @return string [http||https]
-	 */
-	public function scheme(){
-		return $_SERVER['REQUEST_SCHEME'];
-	}
+    /**
+     * Returns the base url.
+     *
+     * @return string
+     */
+    public function basename()
+    {
+        return rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+    }
 
-	/**
-	 * Return the server port
-	 * @return int [80||443]
-	 */
-	public function port(){
-		return intval($_SERVER['SERVER_PORT']);
-	}
+    /**
+     * Return the request scheme.
+     *
+     * @return string [http||https]
+     */
+    public function scheme()
+    {
+        return $_SERVER['REQUEST_SCHEME'];
+    }
 
-	/**
-	 * Return the server protocol type
-	 * @return string
-	 */
-	public function protocol(){
-		return $_SERVER['SERVER_PROTOCOL'];
-	}
+    /**
+     * Return the server port.
+     *
+     * @return int [80||443]
+     */
+    public function port()
+    {
+        return intval($_SERVER['SERVER_PORT']);
+    }
 
-	/**
-	 * Return the gateway interface
-	 * @return [type] [description]
-	 */
-	public function gateway(){
-		return $_SERVER['GATEWAY_INTERFACE'];
-	}
+    /**
+     * Return the server protocol type.
+     *
+     * @return string
+     */
+    public function protocol()
+    {
+        return $_SERVER['SERVER_PROTOCOL'];
+    }
+
+    /**
+     * Return the gateway interface.
+     *
+     * @return [type] [description]
+     */
+    public function gateway()
+    {
+        return $_SERVER['GATEWAY_INTERFACE'];
+    }
 }

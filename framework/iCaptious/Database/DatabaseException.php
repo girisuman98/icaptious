@@ -1,8 +1,10 @@
 <?php
+
 namespace iCaptious\Database;
 
 /**
  * Class DatabaseException.
  */
-final class DatabaseException extends \Exception{
+final class DatabaseException extends \Exception
+{
 }

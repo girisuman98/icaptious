@@ -1,10 +1,10 @@
 <?php
+
 namespace iCaptious\Http;
 
 class Cookie
 {
-	
-	protected $name;
+    protected $name;
     protected $value;
     protected $domain;
     protected $expire;
@@ -14,10 +14,10 @@ class Cookie
     private $raw;
     private $sameSite;
 
+    public function __construct($Cookie)
+    {
 
-	public function __construct($Cookie) {
-
-		// from PHP source code
+        // from PHP source code
         if (preg_match("/[=,; \t\r\n\013\014]/", $Cookie['name'])) {
             throw new \InvalidArgumentException("The cookie name \"$Cookie[name]\" contains invalid characters.");
         }
@@ -36,21 +36,22 @@ class Cookie
             }
         }
 
-		foreach ($Cookie as $key => $value) {
-			$this->{$key} = $value;
-		}
-	}
+        foreach ($Cookie as $key => $value) {
+            $this->{$key} = $value;
+        }
+    }
 
-	public static function FromString($CookieString, $decode = false){
-		$placeholder = array(
-            'expires' => 0,
-            'path' => '/',
-            'domain' => null,
-            'secure' => false,
+    public static function FromString($CookieString, $decode = false)
+    {
+        $placeholder = [
+            'expires'  => 0,
+            'path'     => '/',
+            'domain'   => null,
+            'secure'   => false,
             'httponly' => false,
-            'raw' => !$decode,
+            'raw'      => !$decode,
             'samesite' => null,
-        );
+        ];
         foreach (explode(';', $CookieString) as $part) {
             if (false === strpos($part, '=')) {
                 $key = trim($part);
@@ -77,10 +78,11 @@ class Cookie
                     break;
             }
         }
-        return new self($placeholder);
-	}
 
-	/**
+        return new self($placeholder);
+    }
+
+    /**
      * Returns the cookie as a string.
      *
      * @return string The cookie
@@ -88,7 +90,7 @@ class Cookie
     public function __toString()
     {
         $str = ($this->Raw() ? $this->Name() : urlencode($this->Name())).'=';
-        if ('' === (string)$this->getValue()) {
+        if ('' === (string) $this->getValue()) {
             $str .= 'deleted; expires='.gmdate('D, d-M-Y H:i:s T', time() - 31536001).'; max-age=-31536001';
         } else {
             $str .= $this->isRaw() ? $this->getValue() : rawurlencode($this->getValue());
@@ -111,6 +113,7 @@ class Cookie
         if (null !== $this->SameSite()) {
             $str .= '; samesite='.$this->getSameSite();
         }
+
         return $str;
     }
 }

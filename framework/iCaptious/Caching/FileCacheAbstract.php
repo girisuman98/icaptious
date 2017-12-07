@@ -1,10 +1,15 @@
 <?php
+
 namespace iCaptious\Cache;
+
 /*
 *
 */
-abstract class FileCacheAbstract {
-    abstract function fetch($key);
-    abstract function store($key,$data,$ttl);
-    abstract function delete($key);
+abstract class FileCacheAbstract
+{
+    abstract public function fetch($key);
+
+    abstract public function store($key, $data, $ttl);
+
+    abstract public function delete($key);
 }
