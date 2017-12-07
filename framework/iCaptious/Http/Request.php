@@ -66,7 +66,7 @@ class Request
      */
     public function url()
     {
-        return (!empty($_SERVER['REDIRECT_URL']) ? urldecode($_SERVER['REDIRECT_URL']) : "/");
+        return !empty($_SERVER['REDIRECT_URL']) ? urldecode($_SERVER['REDIRECT_URL']) : '/';
     }
 
     /**
