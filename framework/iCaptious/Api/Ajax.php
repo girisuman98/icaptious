@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Api;
 
-/**
-* 
-*/
+ 
 class Ajax
 {
 	

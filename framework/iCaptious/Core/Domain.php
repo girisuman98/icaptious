@@ -3,9 +3,7 @@ namespace iCaptious\Core;
 
 use iCaptious\Core\Route;
 use iCaptious\Core\Func\Call;
-/**
-* 
-*/
+ 
 class Domain
 {
 	

@@ -1,9 +1,6 @@
 <?php 
-
 namespace iCaptious\Core\Domain;
-/**
-* 
-*/
+ 
 class Path 
 {
 	public static $REL_URI;

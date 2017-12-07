@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Database\Schema;
 use iCaptious\Database\Schema\ColumnHandler;
-/**
-* 
-*/
+ 
 class TableHandler
 {
 	private $Table;

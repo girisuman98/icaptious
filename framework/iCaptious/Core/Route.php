@@ -9,9 +9,7 @@ use iCaptious\Core\Func\Call;
 use iCaptious\Core\Func\Arr;
 use iCaptious\Core\Func\Str;
 
-/**
-* 
-*/
+ 
 class Route
 {
 
@@ -34,7 +32,7 @@ class Route
 	 * 
 	 * @var array
 	 */
-	private static $HttpScope = array( "GET", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH" );
+	private static $HttpScope = array( "GET", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH", "CONNECT", "PURGE" );
 
 	/**
 	 * The Constructor

@@ -1,11 +1,36 @@
 <?php
 namespace iCaptious\Http;
 
-/**
-* 
-*/
+use iCaptious\Http\Request\Headers;
+ 
 class Request
 {
+
+	/**
+	 * Rewuest Methods
+	 */
+    const METHOD_HEAD = 'HEAD';
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+    const METHOD_PUT = 'PUT';
+    const METHOD_PATCH = 'PATCH';
+    const METHOD_DELETE = 'DELETE';
+    const METHOD_PURGE = 'PURGE';
+    const METHOD_OPTIONS = 'OPTIONS';
+    const METHOD_TRACE = 'TRACE';
+    const METHOD_CONNECT = 'CONNECT';
+
+    /**
+     * iCaptious\Http\Request\Headers
+     * @var Headers
+     */
+    protected static $Headers;
+
+    /**
+     * iCaptious\Http\Request\Query
+     * @var Query
+     */
+    protected static $Query;
 	
 	function __construct(){
 		/**
@@ -15,6 +40,17 @@ class Request
 		if (!isset($_SERVER) || empty($_SERVER)) {
 			throw new \Exception("Error Processing Request", 1);
 		}
+
+		self::$Headers 	= self::$Headers ?? (new Headers());
+		self::$Query 	= self::$Query ?? (new Query());
+	}
+
+	/**
+	 * Return iCaptious\Http\Request\Headers
+	 * @return mixed
+	 */
+	public function headers(){
+		return self::$Headers;
 	}
 
 	/**
@@ -30,20 +66,7 @@ class Request
 	 * @return array
 	 */
 	public function query(){
-		if (!empty($_SERVER['QUERY_STRING'])) {
-			$query = explode("&", urldecode($_SERVER['QUERY_STRING']));
-			$aQuery = array();
-			foreach ($query as $key => $value) {
-				$values = explode("=", $value);
-				if (!empty($aQuery[$values[0]])) {
-					$aQuery[$values[0]][] = (!empty($values[1]) ? $values[1] : "");
-				} else {
-					$aQuery[$values[0]] = array((!empty($values[1]) ? $values[1] : ""));
-				}
-			}
-			return $aQuery;
-		}
-		return array();
+		return self::$Query;
 	}
 
 	/**

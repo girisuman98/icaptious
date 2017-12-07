@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Hashing;
 
-/**
-* 
-*/
+ 
 class Hash
 {
 

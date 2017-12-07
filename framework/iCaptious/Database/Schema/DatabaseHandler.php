@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Database\Schema;
 
-/**
-* 
-*/
+ 
 class DatabaseHandler
 {
 	private $Database;

@@ -2,9 +2,7 @@
 namespace iCaptious\Database;
 use iCaptious\Database\DatabaseException;
 use iCaptious\Database\DatabaseConnection;
-/**
-* 
-*/
+ 
 class DB
 {
 	private $DB;

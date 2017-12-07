@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Core\Route;
 
-/**
-* 
-*/
+ 
 class GroupHandler
 {
 	

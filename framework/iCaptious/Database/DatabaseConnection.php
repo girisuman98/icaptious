@@ -1,9 +1,7 @@
 <?php
 namespace iCaptious\Database;
 use iCaptious\Database\DatabaseException;
-/**
-* 
-*/
+ 
 class DatabaseConnection
 {
 
