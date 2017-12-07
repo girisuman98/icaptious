@@ -19,7 +19,7 @@ class Route
 	 * Inherits everything from the Request class
 	 * @var Request
 	 */
-	private static $Request = (new Request());
+	private static $Request;
 
 	/**
 	 * This variable has the prefix value, wich will be
@@ -201,6 +201,7 @@ class Route
 	}
 
 	public static function __callStatic($method, $args){
+		self::$Request = self::$Request ?? (new Request());
 		if (Arr::InArray(Str::Upper($method), self::$HttpScope)) {
 			if ($_SERVER['REQUEST_METHOD'] === Str::Upper($method)) {
 				return Call::FuncArr(__NAMESPACE__ .'\Route::Load', $args);
