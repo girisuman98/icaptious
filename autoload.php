@@ -1,8 +1,9 @@
 <?php
+
 // Specify the extensions that may be loaded
 spl_autoload_extensions('.php');
 
-/**
+/*
  * The Autoloader function
  *
  * @param string $class The Class Name
@@ -10,22 +11,21 @@ spl_autoload_extensions('.php');
  * @access public
  */
 spl_autoload_register(function ($class) {
+    if (substr($class, 0, 10) !== 'iCaptious\\') {
+        return;
+    }
 
-	if (substr($class, 0, 10) !== 'iCaptious\\') {
-  		return;
-	}
+    // split the namespace to an array
+    $namespaces = explode('\\', $class);
 
-	// split the namespace to an array
-	$namespaces = explode("\\", $class);
+    // Replace namespace separator with directory separator
+    $path = implode(DIRECTORY_SEPARATOR, $namespaces);
 
-	// Replace namespace separator with directory separator
-	$path = implode(DIRECTORY_SEPARATOR, $namespaces);
+    // Get full path of file containing the required class
+    $file = dirname(__FILE__).DIRECTORY_SEPARATOR.'framework'.DIRECTORY_SEPARATOR.$path.'.php';
 
-	// Get full path of file containing the required class
-	$file = dirname(__FILE__).DIRECTORY_SEPARATOR."framework".DIRECTORY_SEPARATOR.$path.".php";	
-	
-	// Load file if it exists
-	if (is_readable($file)){
-		require_once $file;		
-	}
+    // Load file if it exists
+    if (is_readable($file)) {
+        require_once $file;
+    }
 });

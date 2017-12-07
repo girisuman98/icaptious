@@ -1,59 +1,66 @@
-<?php 
+<?php
+
 namespace iCaptious\Core\Domain;
- 
-class Path 
+
+class Path
 {
-	public static $REL_URI;
-	public static $call_utf8;
-	public static $path_call;
-	public static $call_parts;
-	public static $GET_DATA;
+    public static $REL_URI;
+    public static $call_utf8;
+    public static $path_call;
+    public static $call_parts;
+    public static $GET_DATA;
 
-	function __construct()
-	{
-		if (isset($_SERVER['REQUEST_URI'])) {
-			self::Uri_Path();
-			self::call_parts();
-			self::get_properties();
-		}
-	}
+    public function __construct()
+    {
+        if (isset($_SERVER['REQUEST_URI'])) {
+            self::Uri_Path();
+            self::call_parts();
+            self::get_properties();
+        }
+    }
 
-	public static function Uri_Path(){
-		self::$REL_URI = rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
-	}
+    public static function Uri_Path()
+    {
+        self::$REL_URI = rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+    }
 
-	public static function call_utf8(){
-		$request_path = explode('?', $_SERVER['REQUEST_URI']);
-		return self::$call_utf8 = substr(urldecode($request_path[0]), strlen(self::$REL_URI) + 1);
-	}
+    public static function call_utf8()
+    {
+        $request_path = explode('?', $_SERVER['REQUEST_URI']);
 
-	public static function path_call(){
-		return self::$path_call = ((utf8_decode(self::call_utf8()) != basename($_SERVER['PHP_SELF'])) ? 
-			utf8_decode(self::call_utf8()) : '');
-	}
+        return self::$call_utf8 = substr(urldecode($request_path[0]), strlen(self::$REL_URI) + 1);
+    }
 
-	public static function call_parts(){
-		return self::$call_parts = explode('/', self::path_call());
-	}
+    public static function path_call()
+    {
+        return self::$path_call = ((utf8_decode(self::call_utf8()) != basename($_SERVER['PHP_SELF'])) ?
+            utf8_decode(self::call_utf8()) : '');
+    }
 
-	public static function get_properties(){
-		$request_path = explode('?', $_SERVER['REQUEST_URI']);
-		$path = array();
+    public static function call_parts()
+    {
+        return self::$call_parts = explode('/', self::path_call());
+    }
 
-		if (!empty($request_path[1])) {
-			$path['query_utf8'] = urldecode($request_path[1]);
-			$path['query'] = utf8_decode(urldecode($request_path[1]));
-			$vars = explode('&', $path['query']);
-			foreach ($vars as $var) {
-			  $t = explode('=', $var);
-			  $path['query_vars'][$t[0]] = $t[1];
-			}
-		} else {
-			$path['query_utf8'] = '';
-			$path['query'] = '';
-			$path['query_vars'] = array();
-		}
+    public static function get_properties()
+    {
+        $request_path = explode('?', $_SERVER['REQUEST_URI']);
+        $path = [];
 
-		return self::$GET_DATA = $path;
-	}
+        if (!empty($request_path[1])) {
+            $path['query_utf8'] = urldecode($request_path[1]);
+            $path['query'] = utf8_decode(urldecode($request_path[1]));
+            $vars = explode('&', $path['query']);
+            foreach ($vars as $var) {
+                $t = explode('=', $var);
+                $path['query_vars'][$t[0]] = $t[1];
+            }
+        } else {
+            $path['query_utf8'] = '';
+            $path['query'] = '';
+            $path['query_vars'] = [];
+        }
+
+        return self::$GET_DATA = $path;
+    }
 }
