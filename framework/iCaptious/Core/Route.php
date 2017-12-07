@@ -36,6 +36,12 @@ class Route
 	 */
 	private static $HttpScope = array( "GET", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH" );
 
+	/**
+	 * The Constructor
+	 */
+	public function __construct(){
+		self::$Request = self::$Request ?? (new Request());
+	}
 
 	/**
 	 * Route by pairing all Http Verbs
@@ -66,7 +72,6 @@ class Route
 	 * @return mixed
 	 */
 	public static function Load($route, $callback){
-		self::$Request = self::$Request ?? (new Request());
 		if (!empty(self::$Group)) {
 			$route = ($route[0] == "/" ?
 			 self::$Group.$route :
@@ -202,7 +207,6 @@ class Route
 	}
 
 	public static function __callStatic($method, $args){
-		self::$Request = self::$Request ?? (new Request());
 		if (Arr::InArray(Str::Upper($method), self::$HttpScope)) {
 			if ($_SERVER['REQUEST_METHOD'] === Str::Upper($method)) {
 				return Call::FuncArr(__NAMESPACE__ .'\Route::Load', $args);
