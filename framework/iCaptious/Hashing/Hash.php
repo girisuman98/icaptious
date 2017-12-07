@@ -1,39 +1,33 @@
 <?php
-namespace Assets;
+namespace iCaptious\Hashing;
 
 /**
- * Verifies and Hashes Passwords or any string given
- * @package  Credentials
- * @author  Neo Morina <neomorina@gmail.com>
- */
-class Credentials
+* 
+*/
+class Hash
 {
-    
-    const DEFAULT_HASH = PASSWORD_BCRYPT;
-
-    public function __construct(){
-
-    }
+	
+	const DEFAULT_HASH = PASSWORD_BCRYPT;
 
     /**
-     * Generates the Hash of a string
+     * Generate the Hash of a string
      * 
      * @param  string $pass     string/password to be hashed
      * @param  mixed  $HashType the type of hash used to hash the password
      * @return mixed
      */
-    public function Hash($pass, $HashType = PASSWORD_DEFAULT){
+    public static function Hash($pass, $HashType = PASSWORD_DEFAULT){
         return password_hash($pass, $HashType);
     }
 
     /**
-     * Verifies if the password is equals to the Hash from DB
+     * Verify if the password is equals to the Hash from DB
      * 
      * @param  string $pass the string/password given to be checked if the are equaly
      * @param  mixed  $hash the hash from the database
      * @return bool
      */
-    public function VerifyHash($pass, $hash){
+    public static function VerifyHash($pass, $hash){
         $filteredHash = end(explode("||", $hash)); // Filter the hash from database and give the real hash
         return password_verify($pass, $filteredHash); 
     }
@@ -45,7 +39,7 @@ class Credentials
      * @param  string $action what to do with this? e for encrypt, d for decrypt
      * @return mixed
      */
-    public function CCrypt( $string, $action = 'e' ) {
+    public static function CCrypt( $string, $action = 'e' ) {
         // you may change these values to your own
         $secret_key = 'ooisihdodiiugdadzgfwefufaifzufwazgfaavvvcyvgcazvvfassahgvaksggvf';
         $secret_iv = 'lgaigfzgakzegfgazwfefif612368tewf766rtfaewfkhsdofuwjhnxcmbbcmnbcy';
@@ -64,4 +58,19 @@ class Credentials
      
         return $output;
     }
+
+	/**
+	 * Generate a Key using different types of algorithms
+	 * 
+	 * @param  string $append
+	 * @param  string $algo   Type of algorithms
+	 * @return mixed
+	 */
+	public static function Keygen($append = "", $algo = "sha256"){
+		$bytes = openssl_random_pseudo_bytes(32);
+		$random_hash = base64_encode($bytes);
+		$random_hash .= $append.$random_hash;
+		$Hash = hash($algo, $random_hash);
+		return $Hash;
+	}
 }
