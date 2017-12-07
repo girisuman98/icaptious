@@ -6,8 +6,18 @@ namespace iCaptious\Hashing;
 */
 class Hash
 {
+
+	// Hashing Algorithm
+	const SHA1   = "sha1";
+	const SHA256 = "sha256";
+	const SHA384 = "sha384";
+	const SHA512 = "sha512";
+	const MD2    = "md2";
+	const MD4 	 = "md4";
+	const MD5    = "md5";
+
 	
-	const DEFAULT_HASH = PASSWORD_BCRYPT;
+	const DEFAULT_CRYPT = PASSWORD_BCRYPT;
 
     /**
      * Generate the Hash of a string
@@ -16,7 +26,7 @@ class Hash
      * @param  mixed  $HashType the type of hash used to hash the password
      * @return mixed
      */
-    public static function Hash($pass, $HashType = PASSWORD_DEFAULT){
+    public static function Hash($pass, $HashType = self::DEFAULT_CRYPT){
         return password_hash($pass, $HashType);
     }
 

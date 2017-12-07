@@ -2,6 +2,7 @@
 
 namespace iCaptious\Core;
 
+use iCaptious\Http\Request;
 use iCaptious\Core\Route\Exceptions\RouteException;
 use iCaptious\Core\Domain\Path;
 use iCaptious\Core\Func\Call;
@@ -11,8 +12,14 @@ use iCaptious\Core\Func\Str;
 /**
 * 
 */
-class Route extends Path
+class Route
 {
+
+	/**
+	 * Inherits everything from the Request class
+	 * @var Request
+	 */
+	private static $Request = new Request();
 
 	/**
 	 * This variable has the prefix value, wich will be
@@ -65,7 +72,7 @@ class Route extends Path
 			 self::$Group."/".$route);
 		}
 		$route = self::Sanitize_Route($route);
-		$real_route = self::Sanitize_Route(parent::path_call());
+		$real_route = self::Sanitize_Route(self::$Request->url());
 		$arguments = array();
 		$last_sign = '';
 
@@ -103,7 +110,7 @@ class Route extends Path
 	 */
 	public static function Group($route, $callback){
 		$route = self::Sanitize_Route($route);
-		$real_route = self::Sanitize_Route(parent::path_call());
+		$real_route = self::Sanitize_Route(self::$Request->url());
 		array_splice($real_route, count($route));
 		if ($route === $real_route) {
 			self::$Group = implode("/", $real_route);
