@@ -10,7 +10,7 @@
 
 * Project page: https://developers.icaptious.com/icaptious/
 * Repository: https://github.com/icaptious/icaptious
-* Version: 1.0.0
+* Version: dev-master
 * License: MIT, see [LICENSE](LICENSE)
 
 ## Description
