@@ -2,6 +2,8 @@
 
 <p align="center">
 <a href="https://travis-ci.org/icaptious/icaptious"><img src="https://api.travis-ci.org/icaptious/icaptious.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/icaptious/icaptious"><img src="https://poser.pugx.org/icaptious/icaptious/v/stable" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/icaptious/icaptious"><img src="https://poser.pugx.org/icaptious/icaptious/downloads" alt="Total Downloads"></a>
 <a href="https://scrutinizer-ci.com/g/icaptious/icaptious/"><img src="https://scrutinizer-ci.com/g/icaptious/icaptious/badges/quality-score.png" alt="Code Quality"></a>
 <a href="https://gitter.im/iCaptious/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/iCaptious/Lobby.svg" alt="Code Quality"></a>
 </p>
