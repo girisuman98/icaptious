@@ -1,81 +1,78 @@
 <?php
-namespace iCaptious\Filesystem;
 
-use iCaptious\Filesystem\StreamWrapperInterface;
+namespace iCaptious\Filesystem;
 
 class StreamWrapper implements StreamWrapperInterface
 {
-	
-	function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 
-	public function Open($path, $mode, $options, &$opened_path){
+    public function Open($path, $mode, $options, &$opened_path)
+    {
+    }
 
-	}
+    public function Close()
+    {
+    }
 
-	public function Close(){
+    public function Read($count)
+    {
+    }
 
-	}
+    public function Write($data)
+    {
+    }
 
-	public function Read($count){
+    public function EOF()
+    {
+    }
 
-	}
+    public function Tell()
+    {
+    }
 
-	public function Write($data){
+    public function Seek($offset, $whence)
+    {
+    }
 
-	}
+    public function Flush()
+    {
+    }
 
-	public function EOF(){
+    public function Stat()
+    {
+    }
 
-	}
+    public function unlink($path)
+    {
+    }
 
- 	public function Tell(){
+    public function rename($path_from, $path_to)
+    {
+    }
 
- 	}
+    public function mkdir($path, $mode, $options)
+    {
+    }
 
-	public function Seek($offset, $whence){
+    public function rmdir($path, $options)
+    {
+    }
 
-	}
+    public function OpenDir($path, $options)
+    {
+    }
 
-	public function Flush(){
+    public function ReadDir()
+    {
+    }
 
-	}
+    public function RewindDir()
+    {
+    }
 
-	public function Stat(){
-
-	}
-
-	public function unlink($path){
-
-	}
-
-	public function rename($path_from, $path_to){
-
-	}
-
-	public function mkdir($path, $mode, $options){
-
-	}
-
-	public function rmdir($path, $options){
-
-	}
-
-	public function OpenDir($path, $options){
-
-	}
-
-	public function ReadDir(){
-
-	}
-
-	public function RewindDir(){
-
-	}
-
-	public function CloseDir(){
-
-	}
+    public function CloseDir()
+    {
+    }
 }
