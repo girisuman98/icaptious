@@ -20,5 +20,5 @@
         "iCaptious\\": "framework/iCaptious"
       }
     },
-    "minimum-stability": "0.9"
+    "minimum-stability": "stable"
 }
