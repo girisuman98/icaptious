@@ -5,6 +5,7 @@ namespace iCaptious\Http;
 use iCaptious\Http\Request\Headers;
 use iCaptious\Http\Request\Query;
 
+
 class Request
 {
     /**
@@ -35,6 +36,8 @@ class Request
      */
     protected static $Query;
 
+    protected static $SERVER;
+
     public function __construct()
     {
         /*
@@ -45,6 +48,7 @@ class Request
             throw new \Exception('Error Processing Request', 1);
         }
 
+        self::$SERVER = self::$SERVER ?? $_SERVER;
         self::$Headers = self::$Headers ?? (new Headers());
         self::$Query = self::$Query ?? (new Query());
     }
@@ -66,7 +70,8 @@ class Request
      */
     public function url()
     {
-        return !empty($_SERVER['REDIRECT_URL']) ? urldecode($_SERVER['REDIRECT_URL']) : '/';
+        self::$SERVER['REQUEST_URI'] = trim(self::$SERVER['REQUEST_URI'], "?".self::$SERVER['argv'][0]);
+        return !empty(self::$SERVER['REQUEST_URI']) ? urldecode(self::$SERVER['REQUEST_URI']) : '/';
     }
 
     /**
@@ -86,7 +91,7 @@ class Request
      */
     public function method()
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return self::$SERVER['REQUEST_METHOD'];
     }
 
     /**
@@ -96,7 +101,7 @@ class Request
      */
     public function basename()
     {
-        return rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+        return rtrim(dirname(self::$SERVER['SCRIPT_NAME']), '\/');
     }
 
     /**
@@ -106,7 +111,7 @@ class Request
      */
     public function scheme()
     {
-        return $_SERVER['REQUEST_SCHEME'];
+        return self::$SERVER['REQUEST_SCHEME'];
     }
 
     /**
@@ -116,7 +121,7 @@ class Request
      */
     public function port()
     {
-        return intval($_SERVER['SERVER_PORT']);
+        return intval(self::$SERVER['SERVER_PORT']);
     }
 
     /**
@@ -126,7 +131,7 @@ class Request
      */
     public function protocol()
     {
-        return $_SERVER['SERVER_PROTOCOL'];
+        return self::$SERVER['SERVER_PROTOCOL'];
     }
 
     /**
@@ -136,6 +141,6 @@ class Request
      */
     public function gateway()
     {
-        return $_SERVER['GATEWAY_INTERFACE'];
+        return self::$SERVER['GATEWAY_INTERFACE'];
     }
 }
