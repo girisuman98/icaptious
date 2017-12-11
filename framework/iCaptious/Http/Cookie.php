@@ -117,43 +117,52 @@ class Cookie
         return $str;
     }
 
-    public function GetName(){
+    public function GetName()
+    {
         return $this->name;
     }
 
-    public function GetValue(){
+    public function GetValue()
+    {
         return $this->value;
     }
 
-    public function GetDomain(){
+    public function GetDomain()
+    {
         return $this->domain;
     }
 
-    public function GetPath(){
+    public function GetPath()
+    {
         return $this->path;
     }
 
-    public function GetExpireTime(){
+    public function GetExpireTime()
+    {
         return $this->expire;
     }
 
-    public function GetMaxAge(){
+    public function GetMaxAge()
+    {
     }
 
-    public function IsRaw(){
+    public function IsRaw()
+    {
         return $this->raw ?? false;
     }
 
-    public function IsSecure(){
+    public function IsSecure()
+    {
         return $this->secure ?? false;
     }
 
-    public function IsHttpOnly(){
+    public function IsHttpOnly()
+    {
         return $this->HttpOnly ?? false;
     }
 
-    public function SameSite(){
+    public function SameSite()
+    {
         return $this->SameSite ?? false;
     }
-
 }
