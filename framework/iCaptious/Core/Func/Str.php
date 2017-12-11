@@ -111,4 +111,21 @@ class Str
             ucfirst($str) :
             static::Upper(substr($str, 0, 1)).substr($str, 1);
     }
+
+    /**
+     * Generate a random string
+     *
+     * @param int $length
+     * @return string
+     */
+    public function Random($length)
+    {
+        $seed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijqlmnopqrtsuvwxyz0123456789';
+        $max = strlen($seed) - 1;
+        $string = '';
+        for ($i = 0; $i < $length; ++$i) {
+            $string .= $seed{intval(mt_rand(0.0, $max))};
+        }
+        return $string;
+    }
 }

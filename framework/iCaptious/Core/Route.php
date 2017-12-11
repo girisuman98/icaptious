@@ -84,8 +84,9 @@ class Route
              self::$Group.$route :
              self::$Group.'/'.$route);
         }
-        $route = self::Sanitize_Route($route);
-        $real_route = self::Sanitize_Route(self::$Request->url());
+
+        $route = self::RouteToArray($route);
+        $real_route = self::RouteToArray(self::$Request->url());
         $arguments = [];
         $last_sign = '';
 
@@ -125,8 +126,8 @@ class Route
      */
     public static function Group($route, $callback)
     {
-        $route = self::Sanitize_Route($route);
-        $real_route = self::Sanitize_Route(self::$Request->url());
+        $route = self::RouteToArray($route);
+        $real_route = self::RouteToArray(self::$Request->url());
         array_splice($real_route, count($route));
         if ($route === $real_route) {
             self::$Group = implode('/', $real_route);
@@ -144,13 +145,14 @@ class Route
      *
      * @return array
      */
-    public static function Sanitize_Route($route)
+    public static function RouteToArray($route)
     {
         // remove slash if it exist at the end of the route
-        $route = trim(trim($route, '/'), 'index.php');
+        $route = trim($route, '/');
+        $route = str_replace("index.php", '', $route);
         // 	$route = (strpos($route, '/') ? explode('/', $route) : $route);
         $route = explode('/', $route);
-
+        
         return $route;
     }
 

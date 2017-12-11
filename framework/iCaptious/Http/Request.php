@@ -35,8 +35,15 @@ class Request
      */
     protected static $Query;
 
+    /**
+     * clone of $_SERVER
+     * @var mixed
+     */
     protected static $SERVER;
 
+    /**
+     * The Constructer
+     */
     public function __construct()
     {
         /*
