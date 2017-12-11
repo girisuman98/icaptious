@@ -1,7 +1,7 @@
 <?php
 namespace iCaptious\Filesystem;
 
-use iCaptious\Filesystem\StreamWrapperInterface:
+use iCaptious\Filesystem\StreamWrapperInterface;
 
 class StreamWrapper implements StreamWrapperInterface
 {
