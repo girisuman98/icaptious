@@ -130,7 +130,7 @@ class Cookie
     }
 
     public function GetPath(){
-        return $this->path
+        return $this->path;
     }
 
     public function GetExpireTime(){
