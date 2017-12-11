@@ -1,5 +1,4 @@
 <?php
-
 namespace iCaptious\Filesystem;
 
 class Filesystem

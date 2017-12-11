@@ -36,7 +36,7 @@ class Headers
      * If getallheaders doesn't exist get the headers with the
      * help of the global variable $_SERVER.
      *
-     * @return array
+     * @return bool|array
      */
     public static function GetHeaders()
     {
