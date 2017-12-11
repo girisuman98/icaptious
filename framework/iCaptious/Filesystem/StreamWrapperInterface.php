@@ -1,40 +1,40 @@
 <?php
+
 namespace iCaptious\Filesystem;
 
 interface StreamWrapperInterface
 {
-	
-	function Open($path, $mode, $options, &$opened_path);
+    public function Open($path, $mode, $options, &$opened_path);
 
-	function Close();
+    public function Close();
 
-	function Read($count);
+    public function Read($count);
 
-	function Write($data);
+    public function Write($data);
 
-	function EOF();
+    public function EOF();
 
- 	function Tell();
+    public function Tell();
 
-	function Seek($offset, $whence);
+    public function Seek($offset, $whence);
 
-	function Flush();
+    public function Flush();
 
-	function Stat();
+    public function Stat();
 
-	function unlink($path);
+    public function unlink($path);
 
-	function rename($path_from, $path_to);
+    public function rename($path_from, $path_to);
 
-	function mkdir($path, $mode, $options);
+    public function mkdir($path, $mode, $options);
 
-	function rmdir($path, $options);
+    public function rmdir($path, $options);
 
-	function OpenDir($path, $options);
+    public function OpenDir($path, $options);
 
-	function ReadDir();
+    public function ReadDir();
 
-	function RewindDir();
+    public function RewindDir();
 
-	function CloseDir();
+    public function CloseDir();
 }

@@ -1,14 +1,10 @@
 <?php
+
 namespace iCaptious\Filesystem;
 
-/**
-* 
-*/
 class Filesystem
 {
-	
-	function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 }
