@@ -41,7 +41,8 @@ class Route
         self::$Request = self::$Request ?? (new Request());
     }
 
-    public static function __static(){
+    public static function __static()
+    {
         self::$Request = self::$Request ?? (new Request());
     }
 
@@ -146,7 +147,7 @@ class Route
     public static function Sanitize_Route($route)
     {
         // remove slash if it exist at the end of the route
-        $route = trim(trim($route, '/'), "index.php");
+        $route = trim(trim($route, '/'), 'index.php');
         // 	$route = (strpos($route, '/') ? explode('/', $route) : $route);
         $route = explode('/', $route);
 

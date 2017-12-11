@@ -5,7 +5,6 @@ namespace iCaptious\Http;
 use iCaptious\Http\Request\Headers;
 use iCaptious\Http\Request\Query;
 
-
 class Request
 {
     /**
@@ -70,7 +69,8 @@ class Request
      */
     public function url()
     {
-        self::$SERVER['REQUEST_URI'] = trim(self::$SERVER['REQUEST_URI'], "?".self::$SERVER['argv'][0]);
+        self::$SERVER['REQUEST_URI'] = trim(self::$SERVER['REQUEST_URI'], '?'.self::$SERVER['argv'][0]);
+
         return !empty(self::$SERVER['REQUEST_URI']) ? urldecode(self::$SERVER['REQUEST_URI']) : '/';
     }
 
