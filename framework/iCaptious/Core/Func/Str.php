@@ -113,9 +113,10 @@ class Str
     }
 
     /**
-     * Generate a random string
+     * Generate a random string.
      *
      * @param int $length
+     *
      * @return string
      */
     public function Random($length)
@@ -123,9 +124,10 @@ class Str
         $seed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijqlmnopqrtsuvwxyz0123456789';
         $max = strlen($seed) - 1;
         $string = '';
-        for ($i = 0; $i < $length; ++$i) {
-            $string .= $seed{intval(mt_rand(0.0, $max))};
+        for ($i = 0; $i < $length; $i++) {
+            $string .= $seed[intval(mt_rand(0.0, $max))];
         }
+
         return $string;
     }
 }

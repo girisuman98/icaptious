@@ -149,10 +149,10 @@ class Route
     {
         // remove slash if it exist at the end of the route
         $route = trim($route, '/');
-        $route = str_replace("index.php", '', $route);
+        $route = str_replace('index.php', '', $route);
         // 	$route = (strpos($route, '/') ? explode('/', $route) : $route);
         $route = explode('/', $route);
-        
+
         return $route;
     }
 
