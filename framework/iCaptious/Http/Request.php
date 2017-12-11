@@ -77,7 +77,8 @@ class Request
      */
     public function url()
     {
-        self::$SERVER['REQUEST_URI'] = trim(self::$SERVER['REQUEST_URI'], '?'.self::$SERVER['argv'][0]);
+		$queryString = !empty(self::$SERVER['argv']) ? self::$SERVER['argv'][0] : self::$SERVER['QUERY_STRING'];
+        self::$SERVER['REQUEST_URI'] = trim(self::$SERVER['REQUEST_URI'], '?'.$queryString);
 
         return !empty(self::$SERVER['REQUEST_URI']) ? urldecode(self::$SERVER['REQUEST_URI']) : '/';
     }
