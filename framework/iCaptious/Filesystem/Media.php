@@ -1,4 +1,5 @@
 <?php
+
 namespace iCaptious\Filesystem;
 
 class Media

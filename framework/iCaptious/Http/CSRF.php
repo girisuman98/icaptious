@@ -1,13 +1,10 @@
 <?php
-namespace iCaptious\Http;
 
-use iCaptious\Session\SessionHandler;
+namespace iCaptious\Http;
 
 class CSRF
 {
-	
-	function __construct()
-	{
-
-	}
+    public function __construct()
+    {
+    }
 }
