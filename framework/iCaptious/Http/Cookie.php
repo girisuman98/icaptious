@@ -10,9 +10,9 @@ class Cookie
     protected $expire;
     protected $path;
     protected $secure;
-    protected $httpOnly;
+    protected $HttpOnly;
     private $raw;
-    private $sameSite;
+    private $SameSite;
 
     public function __construct($Cookie)
     {
@@ -89,31 +89,71 @@ class Cookie
      */
     public function __toString()
     {
-        $str = ($this->Raw() ? $this->Name() : urlencode($this->Name())).'=';
-        if ('' === (string) $this->getValue()) {
+        $str = ($this->IsRaw() ? $this->GetName() : urlencode($this->GetName())).'=';
+        if ('' === (string) $this->GetValue()) {
             $str .= 'deleted; expires='.gmdate('D, d-M-Y H:i:s T', time() - 31536001).'; max-age=-31536001';
         } else {
-            $str .= $this->isRaw() ? $this->getValue() : rawurlencode($this->getValue());
-            if (0 !== $this->getExpiresTime()) {
-                $str .= '; expires='.gmdate('D, d-M-Y H:i:s T', $this->getExpiresTime()).'; max-age='.$this->getMaxAge();
+            $str .= $this->IsRaw() ? $this->GetValue() : rawurlencode($this->GetValue());
+            if (0 !== $this->GetExpireTime()) {
+                $str .= '; expires='.gmdate('D, d-M-Y H:i:s T', $this->GetExpireTime()).'; max-age='.$this->GetMaxAge();
             }
         }
-        if ($this->Path()) {
-            $str .= '; path='.$this->Path();
+        if ($this->GetPath()) {
+            $str .= '; path='.$this->GetPath();
         }
-        if ($this->Domain()) {
-            $str .= '; domain='.$this->Domain();
+        if ($this->GetDomain()) {
+            $str .= '; domain='.$this->GetDomain();
         }
-        if (true === $this->Secure()) {
+        if (true === $this->IsSecure()) {
             $str .= '; secure';
         }
-        if (true === $this->HttpOnly()) {
+        if (true === $this->iSHttpOnly()) {
             $str .= '; httponly';
         }
         if (null !== $this->SameSite()) {
-            $str .= '; samesite='.$this->getSameSite();
+            $str .= '; samesite='.$this->SameSite();
         }
 
         return $str;
     }
+
+    public function GetName(){
+        return $this->name;
+    }
+
+    public function GetValue(){
+        return $this->value;
+    }
+
+    public function GetDomain(){
+        return $this->domain;
+    }
+
+    public function GetPath(){
+        return $this->path
+    }
+
+    public function GetExpireTime(){
+        return $this->expire;
+    }
+
+    public function GetMaxAge(){
+    }
+
+    public function IsRaw(){
+        return $this->raw ?? false;
+    }
+
+    public function IsSecure(){
+        return $this->secure ?? false;
+    }
+
+    public function IsHttpOnly(){
+        return $this->HttpOnly ?? false;
+    }
+
+    public function SameSite(){
+        return $this->SameSite ?? false;
+    }
+
 }
